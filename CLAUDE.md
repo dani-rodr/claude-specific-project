@@ -40,21 +40,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - C#: Use MSTest/NUnit framework with assertion patterns in existing tests
 - JavaScript: Jasmine testing framework with Karma test runner
 
-## Work Item Context (PBI / Bug)
-- When a **PBI number or bug number** is provided (e.g., `1515203`), Claude should:
-  - Retrieve the work item's context using the AzureDevOps Acumen MCP
-  - When working on a PBI or bug, check the user's git branch in the AcumenTouchstone directory to find the branch name
-  - Branch names are typically prefixed with "PBI/" or "Bug/" followed by the work item number (e.g., "PBI/1515203")
-  - Use the branch name to find associated pull request(s) for additional context
-
-## Pull Request
-- When a **Pull Request number** is provided (e.g., `162894`), Claude should:
-  - Retrieve the code, pull request context using the AzureDevOps Acumen Touchstone MCP
-- When responding to PR comments:
-  - Check for unresolved comments in the PR using the Azure DevOps MCP
-  - Look at relevant files to understand what changes are needed
-  - Make the requested changes but allow the user to verify before staging/committing
-
 ## CSS Styling
 - The project uses SCSS for styling
 - Custom styles for specific components are located in `scss` folders within their respective modules
