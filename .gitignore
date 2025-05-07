@@ -1,0 +1,8 @@
+# Ignore everything except .claude folder and CLAUDE.md
+*
+!.claude/
+!.claude/**
+!CLAUDE.md
+!.gitignore
+
+**/.claude/settings.local.json
