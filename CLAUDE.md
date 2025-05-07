@@ -66,6 +66,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - Radio buttons support HORIZONTAL/VERTICAL orientation via RadioGroupField.ORIENTATION
   - Components position is controlled through the combination of colPos/rowPos in layout definitions
 
+## UI Framework Architecture
+- **PPMUI** is the core UI framework that AcumenTouchstone extends and customizes
+- Layout definitions are created using the following pattern:
+  - TabDefinition creates tabs with ID, heading, and sequence
+  - ComponentDefinition adds components to tabs with type, position, and options
+  - Components are positioned in a grid using colPos (column) and rowPos (row)
+  - ComponentDefinition.TYPES defines all valid component types (CHECKBOX, TEXT_BLOCK, etc.)
+- **Responsive Design Approach:**
+  - Components maintain their grid positions in the layout definition
+  - CSS media queries are used to control responsive behavior
+  - Components sharing the same colPos stack vertically
+  - There is no built-in container component - visual grouping is achieved through:
+    1. Sharing the same colPos with sequential rowPos values
+    2. Using common CSS classes applied via additionalCSSClasses
+    3. Using TEXT_BLOCK components as section headers
+- **Common Component Patterns:**
+  - Section headers use TEXT_BLOCK with HTML content
+  - Groups of related checkboxes share the same colPos with different rowPos
+  - DIVIDER components (type: ComponentDefinition.TYPES.DIVIDER) are used to separate sections
+  - Static links (type: ComponentDefinition.TYPES.STATIC_LINK) for actions
+
 ## Online Code Context
 - Retrieve the code, pull request context using the AzureDevOps Acumen Touchstone MCP
 
