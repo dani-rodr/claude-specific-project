@@ -72,6 +72,55 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - DIVIDER components (type: ComponentDefinition.TYPES.DIVIDER) are used to separate sections
   - Static links (type: ComponentDefinition.TYPES.STATIC_LINK) for actions
 
+## PPMUI Component System
+- **Component Architecture:**
+  - All components extend `BaseComponent` class
+  - Components support three main modes: presentation, edit, and design
+  - EJS templates are used for different view modes
+  - Component Manager handles component registration and instantiation
+  
+- **Available Component Types:**
+  - Basic Fields: STRING, NUMBER, CHECKBOX, RADIO, DROPDOWN
+  - Special Fields: DATE, DATETIME, PASSWORD, URL, PHONE
+  - Layout Elements: DIVIDER, TEXT_BLOCK, STATIC_LINK
+  - Complex Components: GRID, TREE, TIMELINE
+  
+- **Common Component Options:**
+  - `label`: Display label for the component
+  - `labelPosition`: Position of label (TOP, LEFT, NONE)
+  - `tooltip`: Help text shown on hover
+  - `isRequired`: Whether the field is required
+  - `additionalCSSClasses`: Custom styling classes
+  - `compactHeight`: Reduces vertical padding (checkboxes)
+  
+- **Component Implementation Pattern:**
+  1. Create layout definition with tabs
+  2. Add components to tabs with proper positioning
+  3. Configure component options
+  4. Register event handlers in application
+
+- **Grid System:**
+  - Components positioned with colPos and rowPos (1-based, not 0-based)
+  - Components can span multiple columns using colWidth
+  - Components sharing the same colPos stack vertically
+  - Visual grouping through sequential rowPos values
+
+- **Example Component Usage:**
+```javascript
+layoutdef.addComponent(new ComponentDefinition({
+    id: "MyComponent.Id",
+    tabID: "myTabId",
+    label: i18n("Translation.Key"),
+    colPos: 1,
+    rowPos: 2,
+    type: ComponentDefinition.TYPES.STRING,
+    otherOptions: {
+        isRequired: true,
+        maxLength: 100
+    }
+}));
+```
+
 ## Online Code Context
 - Retrieve the code, pull request context using the AzureDevOps Acumen Touchstone MCP
 
